@@ -31,7 +31,7 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        $exist = Technology::where('title', $request->name)->first();
+        $exist = Technology::where('title', $request->title)->first();
         if ($exist) {
             return redirect()->route('admin.technologies.index')->with('error', 'Nome Tecnologia già esistente');
         } else{
@@ -63,9 +63,26 @@ class TechnologyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $val_data = $request->validate([
+            'title' => 'required|min:2|max:100'
+        ],
+        [
+           'title.required' => 'Devi inserire il nome della Tecnologia',
+           'title.min' => 'Deve avere almeno :min caratteri',
+           'title.max' => 'Deve avere al massimo :max caratteri',
+        ]);
+
+        $exist = Technology::where('title', $request->title)->first();
+        if ($exist) {
+            return redirect()->route('admin.technologies.index')->with('error', 'Nome Tecnologia già esistente');
+        } else{
+            $val_data['slug'] = Helper::generateSlug($request->title, Technology::class);
+            $technology->update($val_data);
+
+            return redirect()->route('admin.technologies.index')->with('success', 'Nome Tecnologia modificata correttamente');
+        }
     }
 
     /**
