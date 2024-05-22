@@ -53,11 +53,18 @@
                     <input type="text" value="{{ $technology->title }}" name="title">
                 </form>
               </td>
-              <td>
+              <td class="d-flex">
                 <button
-                  class="btn btn-warning "
+                  class="btn btn-warning me-2"
                   onclick="submitForm({{ $technology->id }})"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                <form
+                  action="{{ route('admin.technologies.destroy', $technology)}}"
+                  method="POST"
+                  onsubmit="return confirm('Sei sicuro di volerla eliminare?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                </form>
               </td>
             </tr>
             @endforeach
