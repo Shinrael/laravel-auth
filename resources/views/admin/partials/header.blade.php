@@ -1,6 +1,6 @@
 <header>
 
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
           <a href="{{ route('home') }}" target="_blank" class="navbar-brand"><i class="fa-solid fa-house"></i> Vai al tuo sito</a>
           <div class="d-flex align-items-center ">
