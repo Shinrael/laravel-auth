@@ -2,7 +2,7 @@
     <nav>
         <ul>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.projects.index') }}">
                     <i class="fa-solid fa-diagram-project"></i>
                     <span>Elenco Progetti</span>
                 </a>
@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.types.index') }}">
                     <i class="fa-solid fa-clipboard-list"></i>
                     <span>Elenco Tipi</span>
                 </a>
