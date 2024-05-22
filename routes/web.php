@@ -30,7 +30,9 @@ Route::middleware(['auth', 'verified'])
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('home');
             // qui inseriremo le route della CRUD
-            Route::resource('projects', ProjectController::class);
+            Route::resource('projects', ProjectController::class)->except([
+                'create', 'edit', 'show',
+            ]);
             Route::resource('technologies', TechnologyController::class)->except([
                 'create', 'edit', 'show',
             ]);
